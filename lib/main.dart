@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resume_builder_app/pages/build_options/build_option/personal_info_page.dart';
+import 'package:resume_builder_app/pages/build_options/build_option/technical_skills.dart';
 import 'package:resume_builder_app/pages/build_options/build_option_page.dart';
 import 'package:resume_builder_app/pages/home_page/home_page.dart';
 import 'package:resume_builder_app/pages/splash_screen/splash_screen.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       MyRoutes.homePage: (context) => const HomePage(),
       MyRoutes.buildOptionPage: (context) => const BuildOptionPage(),
       MyRoutes.buildOptions[0]['route']: (context) => const PersonalInfoPage(),
+      MyRoutes.buildOptions[5]['route']: (context) => const TecnicalPage(),
     });
   }
 }

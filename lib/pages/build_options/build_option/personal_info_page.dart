@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:resume_builder_app/pages/build_options/build_option/components/form_widget.dart';
+import 'package:resume_builder_app/utils/globals.dart';
 
 class PersonalInfoPage extends StatefulWidget {
   const PersonalInfoPage({super.key});
@@ -17,11 +19,15 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
-        title: const Text("Personal information"),
+        title: const Text(
+          "Personal information",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
-      body: IndexedStack(
-        children: [
-          Column(
+      body: Padding(
+        padding: const EdgeInsets.all(2),
+        child: SingleChildScrollView(
+          child: Column(
             children: [
               Row(
                 children: [
@@ -36,14 +42,23 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       height: size.height * 0.07,
                       width: size.width * 0.47,
                       decoration: BoxDecoration(
-                        color: (_pr == true)
+                        color: (_pr == false)
                             ? Colors.white10
-                            : Colors.red.shade400,
+                            : Colors.blue.shade400,
                         borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            topLeft: Radius.circular(10)),
-                        border: Border.all(
-                            color: Colors.black, style: BorderStyle.solid),
+                          bottomLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                        ),
+                      ),
+                      child: const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Contact",
+                          style: TextStyle(
+                            fontSize: 23,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -59,46 +74,40 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       height: size.height * 0.07,
                       width: size.width * 0.47,
                       decoration: BoxDecoration(
-                        color: (_pr == false)
+                        color: (_pr == true)
                             ? Colors.white12
                             : Colors.blue.shade400,
 
                         // color: Colors.blue.shade400,
                         borderRadius: const BorderRadius.only(
                           bottomRight: Radius.circular(10),
-                          topRight: Radius.circular(10),
+                          topLeft: Radius.circular(10),
                         ),
-                        border: Border.all(
-                            color: Colors.black, style: BorderStyle.solid),
+                      ),
+                      child: const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Photo",
+                          style: TextStyle(
+                            fontSize: 23,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
               (_pr == true)
-                  ? Container(
-                      margin: const EdgeInsets.all(15),
-                      height: size.height * 0.5,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                        color: Colors.black12,
-                      ),
-                      child: Column(
-                        children: [
-                          Form(
-                            child: TextFormField(),
-                          )
-                        ],
-                      ),
-                    )
+                  ? formWidgrt(context: context)
                   : Container(
                       height: size.height * 0.07,
                       width: size.width * 0.5,
                       color: Colors.cyan,
-                    )
+                    ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }
