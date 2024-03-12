@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:resume_builder_app/pages/build_options/build_option/components/form_widget.dart';
 import 'package:resume_builder_app/utils/globals.dart';
 
@@ -101,9 +104,43 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
               (_pr == true)
                   ? formWidgrt(context: context)
                   : Container(
-                      height: size.height * 0.07,
-                      width: size.width * 0.5,
+                      alignment: Alignment.center,
+                      height: size.height * 0.25,
+                      width: size.width,
                       color: Colors.cyan,
+                      child: Stack(
+                        alignment: Alignment.bottomRight,
+                        children: [
+                          SizedBox(
+                            height: size.height * 0.5,
+                            child: CircleAvatar(
+                              radius: size.height * 0.1,
+                              foregroundImage: Globals.globals.image != null
+                                  ? FileImage(Globals.globals.image!)
+                                  : null,
+                            ),
+                          ),
+                          FloatingActionButton.small(
+                            onPressed: () async {
+                              ImagePicker picker = ImagePicker();
+                              XFile? file = await picker.pickImage(
+                                source: ImageSource.gallery,
+                              );
+
+                              if (file != null) {
+                                Globals.globals.image = File(file.path);
+                                setState(() {});
+                              }
+                            },
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            child: const Icon(
+                              Icons.camera_alt_outlined,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
             ],
           ),
