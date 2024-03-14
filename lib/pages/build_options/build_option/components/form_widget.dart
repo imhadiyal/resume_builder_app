@@ -5,7 +5,7 @@ import 'package:resume_builder_app/widget/my_snakbar.dart';
 import '../../../../utils/globals.dart';
 
 Widget formWidgrt({required BuildContext context}) {
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  GlobalKey<FormState> personlformkey = GlobalKey<FormState>();
   Size size = MediaQuery.sizeOf(context);
   return Container(
     padding: const EdgeInsets.all(10),
@@ -15,7 +15,7 @@ Widget formWidgrt({required BuildContext context}) {
       color: Colors.white,
     ),
     child: Form(
-      key: formkey,
+      key: personlformkey,
       child: Column(
         children: [
           TextFormField(
@@ -29,11 +29,11 @@ Widget formWidgrt({required BuildContext context}) {
               hintText: "Enter your Name",
               labelText: "Name",
             ),
-            initialValue: Globals.globals.name,
+            initialValue: Globals.globals.user.name,
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.name,
             onSaved: (val) {
-              Globals.globals.name = val;
+              Globals.globals.user.name = val;
             },
             validator: (val) {
               if (val!.isEmpty) {
@@ -57,11 +57,11 @@ Widget formWidgrt({required BuildContext context}) {
               hintText: "Enter your Email",
               labelText: "Email",
             ),
-            initialValue: Globals.globals.email,
+            initialValue: Globals.globals.user.email,
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.emailAddress,
             onSaved: (val) {
-              Globals.globals.email = val;
+              Globals.globals.user.email = val;
             },
             validator: (val) {
               if (val!.isEmpty) {
@@ -85,11 +85,11 @@ Widget formWidgrt({required BuildContext context}) {
               hintText: "Enter your Contact Number",
               labelText: "Contact",
             ),
-            initialValue: Globals.globals.phone,
+            initialValue: Globals.globals.user.phone,
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.phone,
             onSaved: (val) {
-              Globals.globals.phone = val;
+              Globals.globals.user.phone = val;
             },
             validator: (val) {
               if (val!.isEmpty) {
@@ -113,10 +113,10 @@ Widget formWidgrt({required BuildContext context}) {
               hintText: "Enter your Address",
               labelText: "Address",
             ),
-            initialValue: Globals.globals.address,
+            initialValue: Globals.globals.user.address,
             textInputAction: TextInputAction.done,
             onSaved: (val) {
-              Globals.globals.address = val;
+              Globals.globals.user.address = val;
             },
             validator: (val) {
               if (val!.isEmpty) {
@@ -133,9 +133,9 @@ Widget formWidgrt({required BuildContext context}) {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    bool validater = formkey.currentState!.validate();
+                    bool validater = personlformkey.currentState!.validate();
                     if (validater) {
-                      formkey.currentState!.save();
+                      personlformkey.currentState!.save();
                     }
                     ScaffoldMessenger.of(context).showSnackBar(
                       mySnackBar(
@@ -145,6 +145,13 @@ Widget formWidgrt({required BuildContext context}) {
                           color: validater ? Colors.green : Colors.red),
                     );
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue.shade400,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
                   child: const Text("Submit"),
                 ),
                 SizedBox(
@@ -152,9 +159,16 @@ Widget formWidgrt({required BuildContext context}) {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Globals.globals.reset();
-                    formkey.currentState!.reset();
+                    Globals.globals.user.reset();
+                    personlformkey.currentState!.reset();
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue.shade400,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
                   child: const Text("Reset"),
                 ),
               ],

@@ -2,9 +2,26 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 
-class Globals {
-  String? name, email, phone, address;
+class User {
+  String? name,
+      contact,
+      email,
+      phone,
+      address,
+      course,
+      school,
+      result,
+      syear,
+      eyear;
   File? image;
+
+  void reset() {
+    name = contact = email = image =
+        phone = address = course = school = result = syear = eyear = null;
+  }
+}
+
+class Globals {
   List<String> skill = ["", ""];
   List<TextEditingController> controller = [
     TextEditingController(),
@@ -12,7 +29,7 @@ class Globals {
   ];
   Globals._();
   static final Globals globals = Globals._();
-  void reset() {
-    name = email = phone = address = null;
-  }
+  User user = User();
+
+  List<User> allUsers = [];
 }
