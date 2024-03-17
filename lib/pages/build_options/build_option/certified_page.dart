@@ -3,24 +3,25 @@ import 'package:flutter/material.dart';
 import '../../../utils/globals.dart';
 import '../../../widget/my_snakbar.dart';
 
-class EducationPage extends StatefulWidget {
-  const EducationPage({super.key});
+class CertifiedPage extends StatefulWidget {
+  const CertifiedPage({super.key});
 
   @override
-  State<EducationPage> createState() => _EducationPageState();
+  State<CertifiedPage> createState() => _CertifiedPageState();
 }
 
-class _EducationPageState extends State<EducationPage> {
+class _CertifiedPageState extends State<CertifiedPage> {
+  bool _isChecked = false;
   @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> educationformkey = GlobalKey<FormState>();
+    GlobalKey<FormState> certifiedkey = GlobalKey<FormState>();
     Size size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
         title: const Text(
-          "Education",
+          "Certified Courses",
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -42,22 +43,24 @@ class _EducationPageState extends State<EducationPage> {
                           width: double.infinity,
                           child: Dialog(
                             shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0))),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
                             insetPadding: const EdgeInsets.all(10),
                             shadowColor: Colors.blue,
                             elevation: 5,
                             child: Padding(
                               padding: const EdgeInsets.all(20),
                               child: Form(
-                                key: educationformkey,
+                                key: certifiedkey,
                                 child: SingleChildScrollView(
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "School/College name",
+                                        "Certificate Name",
                                         style: TextStyle(
                                             color: Colors.deepPurple.shade700,
                                             fontWeight: FontWeight.bold,
@@ -71,20 +74,19 @@ class _EducationPageState extends State<EducationPage> {
                                               Radius.circular(10),
                                             ),
                                           ),
-                                          hintText:
-                                              "Enter Your School/College Name",
+                                          hintText: "Certificate Name",
                                         ),
-                                        initialValue:
-                                            Globals.globals.user.school,
+                                        initialValue: Globals
+                                            .globals.user.certificate_name,
                                         textInputAction: TextInputAction.next,
-                                        keyboardType:
-                                            TextInputType.emailAddress,
+                                        keyboardType: TextInputType.name,
                                         onSaved: (val) {
-                                          Globals.globals.user.school = val;
+                                          Globals.globals.user
+                                              .certificate_name = val;
                                         },
                                         validator: (val) {
                                           if (val!.isEmpty) {
-                                            return "Must Enter School/College Name";
+                                            return "Must Enter Certificate Name";
                                           } else {
                                             return null;
                                           }
@@ -94,7 +96,7 @@ class _EducationPageState extends State<EducationPage> {
                                         height: size.height * 0.01,
                                       ),
                                       Text(
-                                        "Result",
+                                        "Platform",
                                         style: TextStyle(
                                             color: Colors.deepPurple.shade700,
                                             fontWeight: FontWeight.bold,
@@ -108,18 +110,18 @@ class _EducationPageState extends State<EducationPage> {
                                               Radius.circular(10),
                                             ),
                                           ),
-                                          hintText: "Enter your Result",
+                                          hintText: "Platform",
                                         ),
                                         initialValue:
-                                            Globals.globals.user.result,
+                                            Globals.globals.user.platform,
                                         textInputAction: TextInputAction.next,
                                         keyboardType: TextInputType.number,
                                         onSaved: (val) {
-                                          Globals.globals.user.result = val;
+                                          Globals.globals.user.platform = val;
                                         },
                                         validator: (val) {
                                           if (val!.isEmpty) {
-                                            return "Must Enter Result";
+                                            return "Must Enter Platform";
                                           } else {
                                             return null;
                                           }
@@ -129,7 +131,7 @@ class _EducationPageState extends State<EducationPage> {
                                         height: size.height * 0.01,
                                       ),
                                       Text(
-                                        "Start year",
+                                        "Start Date",
                                         style: TextStyle(
                                             color: Colors.deepPurple.shade700,
                                             fontWeight: FontWeight.bold,
@@ -143,18 +145,19 @@ class _EducationPageState extends State<EducationPage> {
                                               Radius.circular(10),
                                             ),
                                           ),
-                                          hintText: "Enter your Start Year",
+                                          hintText: "Start Date",
                                         ),
                                         keyboardType: TextInputType.number,
-                                        initialValue:
-                                            Globals.globals.user.syear,
+                                        initialValue: Globals
+                                            .globals.user.certificate_sdate,
                                         textInputAction: TextInputAction.next,
                                         onSaved: (val) {
-                                          Globals.globals.user.syear = val;
+                                          Globals.globals.user
+                                              .certificate_sdate = val;
                                         },
                                         validator: (val) {
                                           if (val!.isEmpty) {
-                                            return "Must Enter Start Year";
+                                            return "Must Enter Start Date";
                                           } else {
                                             return null;
                                           }
@@ -164,7 +167,7 @@ class _EducationPageState extends State<EducationPage> {
                                         height: size.height * 0.01,
                                       ),
                                       Text(
-                                        "End year",
+                                        "End Date",
                                         style: TextStyle(
                                             color: Colors.deepPurple.shade700,
                                             fontWeight: FontWeight.bold,
@@ -172,28 +175,35 @@ class _EducationPageState extends State<EducationPage> {
                                             height: 2),
                                       ),
                                       TextFormField(
+                                        enabled: _isChecked,
                                         decoration: const InputDecoration(
                                           border: OutlineInputBorder(
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(10),
                                             ),
                                           ),
-                                          hintText: "Enter your End Year",
+                                          hintText: "End Date",
                                         ),
                                         keyboardType: TextInputType.number,
-                                        initialValue:
-                                            Globals.globals.user.eyear,
+                                        initialValue: Globals
+                                            .globals.user.certificate_edate,
                                         textInputAction: TextInputAction.done,
                                         onSaved: (val) {
-                                          Globals.globals.user.eyear = val;
+                                          Globals.globals.user
+                                              .certificate_edate = val;
                                         },
-                                        validator: (val) {
-                                          if (val!.isEmpty) {
-                                            return "Must Enter End Year";
-                                          } else {
-                                            return null;
-                                          }
-                                        },
+                                      ),
+                                      Row(
+                                        children: [
+                                          Checkbox(
+                                              value: this._isChecked,
+                                              onChanged: (val) {
+                                                this._isChecked = val!;
+                                                setState(() {});
+                                              }),
+                                          const Text(
+                                              "I am currently working in this role"),
+                                        ],
                                       ),
                                       SizedBox(
                                         height: size.height * 0.02,
@@ -218,23 +228,26 @@ class _EducationPageState extends State<EducationPage> {
                                             child: ElevatedButton(
                                               onPressed: () {
                                                 User u = User();
-                                                bool validater =
-                                                    educationformkey
-                                                        .currentState!
-                                                        .validate();
+                                                bool validater = certifiedkey
+                                                    .currentState!
+                                                    .validate();
                                                 if (validater) {
-                                                  educationformkey.currentState!
+                                                  certifiedkey.currentState!
                                                       .save();
-                                                  u.course = Globals
-                                                      .globals.user.course;
-                                                  u.school = Globals
-                                                      .globals.user.school;
-                                                  u.result = Globals
-                                                      .globals.user.result;
-                                                  u.syear = Globals
-                                                      .globals.user.syear;
-                                                  u.eyear = Globals
-                                                      .globals.user.eyear;
+                                                  u.certificate_name = Globals
+                                                      .globals
+                                                      .user
+                                                      .certificate_name;
+                                                  u.platform = Globals
+                                                      .globals.user.platform;
+                                                  u.certificate_sdate = Globals
+                                                      .globals
+                                                      .user
+                                                      .certificate_sdate;
+                                                  u.certificate_edate = Globals
+                                                      .globals
+                                                      .user
+                                                      .certificate_edate;
 
                                                   Globals.globals.allUsers
                                                       .add(u);
@@ -281,7 +294,7 @@ class _EducationPageState extends State<EducationPage> {
                   },
                   icon: const Icon(Icons.add),
                   label: const Text(
-                    "Add Education Detail",
+                    "Add Certificate Detail",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   style: ElevatedButton.styleFrom(
@@ -300,8 +313,16 @@ class _EducationPageState extends State<EducationPage> {
                   .map(
                     (e) => Card(
                       child: ListTile(
-                        title: Text(e.school ?? "Course"),
-                        subtitle: Text(e.result ?? "Result"),
+                        title: Text(
+                          e.certificate_name ?? "Certificate Name",
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 19),
+                        ),
+                        subtitle: Text(
+                          e.platform ?? "Platform",
+                          style: const TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
                         trailing: IconButton(
                           onPressed: () {
                             Globals.globals.allUsers.remove(e);
@@ -312,7 +333,7 @@ class _EducationPageState extends State<EducationPage> {
                       ),
                     ),
                   )
-                  .toList()
+                  .toList(),
             ],
           ),
         ),

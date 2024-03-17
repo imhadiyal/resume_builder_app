@@ -3,24 +3,24 @@ import 'package:flutter/material.dart';
 import '../../../utils/globals.dart';
 import '../../../widget/my_snakbar.dart';
 
-class EducationPage extends StatefulWidget {
-  const EducationPage({super.key});
+class ProjectPage extends StatefulWidget {
+  const ProjectPage({super.key});
 
   @override
-  State<EducationPage> createState() => _EducationPageState();
+  State<ProjectPage> createState() => _ProjectPageState();
 }
 
-class _EducationPageState extends State<EducationPage> {
+class _ProjectPageState extends State<ProjectPage> {
   @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> educationformkey = GlobalKey<FormState>();
+    GlobalKey<FormState> certifiedkey = GlobalKey<FormState>();
     Size size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
         title: const Text(
-          "Education",
+          "Projects",
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -42,24 +42,26 @@ class _EducationPageState extends State<EducationPage> {
                           width: double.infinity,
                           child: Dialog(
                             shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0))),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
                             insetPadding: const EdgeInsets.all(10),
                             shadowColor: Colors.blue,
                             elevation: 5,
                             child: Padding(
                               padding: const EdgeInsets.all(20),
                               child: Form(
-                                key: educationformkey,
+                                key: certifiedkey,
                                 child: SingleChildScrollView(
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        "School/College name",
+                                      const Text(
+                                        "Project Title",
                                         style: TextStyle(
-                                            color: Colors.deepPurple.shade700,
+                                            color: Colors.deepPurple,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 15,
                                             height: 2),
@@ -71,32 +73,30 @@ class _EducationPageState extends State<EducationPage> {
                                               Radius.circular(10),
                                             ),
                                           ),
-                                          hintText:
-                                              "Enter Your School/College Name",
+                                          hintText: "Enter your Work Title",
                                         ),
                                         initialValue:
-                                            Globals.globals.user.school,
+                                            Globals.globals.user.course,
                                         textInputAction: TextInputAction.next,
-                                        keyboardType:
-                                            TextInputType.emailAddress,
+                                        keyboardType: TextInputType.name,
                                         onSaved: (val) {
-                                          Globals.globals.user.school = val;
+                                          Globals.globals.user.course = val;
                                         },
                                         validator: (val) {
                                           if (val!.isEmpty) {
-                                            return "Must Enter School/College Name";
+                                            return "Please Enter Work Title";
                                           } else {
                                             return null;
                                           }
                                         },
                                       ),
                                       SizedBox(
-                                        height: size.height * 0.01,
+                                        height: size.height * 0.02,
                                       ),
-                                      Text(
-                                        "Result",
+                                      const Text(
+                                        "Technology",
                                         style: TextStyle(
-                                            color: Colors.deepPurple.shade700,
+                                            color: Colors.deepPurple,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 15,
                                             height: 2),
@@ -108,30 +108,30 @@ class _EducationPageState extends State<EducationPage> {
                                               Radius.circular(10),
                                             ),
                                           ),
-                                          hintText: "Enter your Result",
+                                          hintText: "Enter your Technology",
                                         ),
                                         initialValue:
-                                            Globals.globals.user.result,
+                                            Globals.globals.user.course,
                                         textInputAction: TextInputAction.next,
-                                        keyboardType: TextInputType.number,
+                                        keyboardType: TextInputType.name,
                                         onSaved: (val) {
-                                          Globals.globals.user.result = val;
+                                          Globals.globals.user.course = val;
                                         },
                                         validator: (val) {
                                           if (val!.isEmpty) {
-                                            return "Must Enter Result";
+                                            return "Please Enter Technology";
                                           } else {
                                             return null;
                                           }
                                         },
                                       ),
                                       SizedBox(
-                                        height: size.height * 0.01,
+                                        height: size.height * 0.02,
                                       ),
-                                      Text(
-                                        "Start year",
+                                      const Text(
+                                        "Features",
                                         style: TextStyle(
-                                            color: Colors.deepPurple.shade700,
+                                            color: Colors.deepPurple,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 15,
                                             height: 2),
@@ -143,53 +143,20 @@ class _EducationPageState extends State<EducationPage> {
                                               Radius.circular(10),
                                             ),
                                           ),
-                                          hintText: "Enter your Start Year",
+                                          hintText: "Enter your Features",
                                         ),
-                                        keyboardType: TextInputType.number,
                                         initialValue:
-                                            Globals.globals.user.syear,
-                                        textInputAction: TextInputAction.next,
+                                            Globals.globals.user.course,
+                                        textInputAction:
+                                            TextInputAction.newline,
+                                        maxLines: 5,
+                                        keyboardType: TextInputType.name,
                                         onSaved: (val) {
-                                          Globals.globals.user.syear = val;
+                                          Globals.globals.user.course = val;
                                         },
                                         validator: (val) {
                                           if (val!.isEmpty) {
-                                            return "Must Enter Start Year";
-                                          } else {
-                                            return null;
-                                          }
-                                        },
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.01,
-                                      ),
-                                      Text(
-                                        "End year",
-                                        style: TextStyle(
-                                            color: Colors.deepPurple.shade700,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                            height: 2),
-                                      ),
-                                      TextFormField(
-                                        decoration: const InputDecoration(
-                                          border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(10),
-                                            ),
-                                          ),
-                                          hintText: "Enter your End Year",
-                                        ),
-                                        keyboardType: TextInputType.number,
-                                        initialValue:
-                                            Globals.globals.user.eyear,
-                                        textInputAction: TextInputAction.done,
-                                        onSaved: (val) {
-                                          Globals.globals.user.eyear = val;
-                                        },
-                                        validator: (val) {
-                                          if (val!.isEmpty) {
-                                            return "Must Enter End Year";
+                                            return "Please Enter Features";
                                           } else {
                                             return null;
                                           }
@@ -218,23 +185,26 @@ class _EducationPageState extends State<EducationPage> {
                                             child: ElevatedButton(
                                               onPressed: () {
                                                 User u = User();
-                                                bool validater =
-                                                    educationformkey
-                                                        .currentState!
-                                                        .validate();
+                                                bool validater = certifiedkey
+                                                    .currentState!
+                                                    .validate();
                                                 if (validater) {
-                                                  educationformkey.currentState!
+                                                  certifiedkey.currentState!
                                                       .save();
-                                                  u.course = Globals
-                                                      .globals.user.course;
-                                                  u.school = Globals
-                                                      .globals.user.school;
-                                                  u.result = Globals
-                                                      .globals.user.result;
-                                                  u.syear = Globals
-                                                      .globals.user.syear;
-                                                  u.eyear = Globals
-                                                      .globals.user.eyear;
+                                                  u.certificate_name = Globals
+                                                      .globals
+                                                      .user
+                                                      .certificate_name;
+                                                  u.platform = Globals
+                                                      .globals.user.platform;
+                                                  u.certificate_sdate = Globals
+                                                      .globals
+                                                      .user
+                                                      .certificate_sdate;
+                                                  u.certificate_edate = Globals
+                                                      .globals
+                                                      .user
+                                                      .certificate_edate;
 
                                                   Globals.globals.allUsers
                                                       .add(u);
@@ -281,7 +251,7 @@ class _EducationPageState extends State<EducationPage> {
                   },
                   icon: const Icon(Icons.add),
                   label: const Text(
-                    "Add Education Detail",
+                    "Add Project Detail",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   style: ElevatedButton.styleFrom(
@@ -300,8 +270,16 @@ class _EducationPageState extends State<EducationPage> {
                   .map(
                     (e) => Card(
                       child: ListTile(
-                        title: Text(e.school ?? "Course"),
-                        subtitle: Text(e.result ?? "Result"),
+                        title: Text(
+                          e.certificate_name ?? "Certificate Name",
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 19),
+                        ),
+                        subtitle: Text(
+                          e.platform ?? "Platform",
+                          style: const TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
                         trailing: IconButton(
                           onPressed: () {
                             Globals.globals.allUsers.remove(e);
@@ -312,7 +290,7 @@ class _EducationPageState extends State<EducationPage> {
                       ),
                     ),
                   )
-                  .toList()
+                  .toList(),
             ],
           ),
         ),

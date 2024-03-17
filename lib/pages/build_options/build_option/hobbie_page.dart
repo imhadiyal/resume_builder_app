@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:resume_builder_app/utils/globals.dart';
 
-class TecnicalPage extends StatefulWidget {
-  const TecnicalPage({super.key});
+import '../../../utils/globals.dart';
+
+class HobbiesPage extends StatefulWidget {
+  const HobbiesPage({super.key});
 
   @override
-  State<TecnicalPage> createState() => _TecnicalPageState();
+  State<HobbiesPage> createState() => _HobbiesPageState();
 }
 
-class _TecnicalPageState extends State<TecnicalPage> {
+class _HobbiesPageState extends State<HobbiesPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
@@ -17,7 +18,7 @@ class _TecnicalPageState extends State<TecnicalPage> {
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
         foregroundColor: Colors.white,
-        title: const Text("Enter your Skills"),
+        title: const Text("Enter your Hobbies"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -30,7 +31,7 @@ class _TecnicalPageState extends State<TecnicalPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               ...List.generate(
-                Globals.globals.skill.length,
+                Globals.globals.hobbie.length,
                 (index) => Row(
                   children: [
                     Expanded(
@@ -43,16 +44,16 @@ class _TecnicalPageState extends State<TecnicalPage> {
                                 Radius.circular(10),
                               ),
                             ),
-                            hintText: "Enter a Skill",
+                            hintText: "Enter a Hobbies",
                           ),
-                          controller: Globals.globals.controller[index],
+                          controller: Globals.globals.hobbiecontroller[index],
                         ),
                       ),
                     ),
                     IconButton(
                       onPressed: () {
-                        Globals.globals.skill.removeAt(index);
-                        Globals.globals.controller.removeAt(index);
+                        Globals.globals.hobbie.removeAt(index);
+                        Globals.globals.hobbiecontroller.removeAt(index);
 
                         setState(() {});
                       },
@@ -67,8 +68,9 @@ class _TecnicalPageState extends State<TecnicalPage> {
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    Globals.globals.skill.add("");
-                    Globals.globals.controller.add(TextEditingController());
+                    Globals.globals.hobbie.add("");
+                    Globals.globals.hobbiecontroller
+                        .add(TextEditingController());
                   });
                 },
                 style: ElevatedButton.styleFrom(
